@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>travelTales — Country Info & World News</title>
+    <link rel="stylesheet" href="./css/location.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- dashboard-btn -->
+    <button class="nav-item"
+        onclick="window.location.href='dashboard.html'">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+            viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round">
+            <rect x="3" y="3" width="7" height="7"/>
+            <rect x="14" y="3" width="7" height="7"/>
+            <rect x="3" y="14" width="7" height="7"/>
+            <rect x="14" y="14" width="7" height="7"/>
+        </svg>
+    Dashboard
+</button>
+
+    <!-- Theme Toggle — same pattern as dashboard.html -->
+    <div class="theme-toggle-wrap">
+        <input type="checkbox" id="toggle" class="white-mode" aria-label="Toggle dark/light mode">
+        <label class="toggle-label" for="toggle">
+            <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+            <span class="toggle-track"></span>
+            <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        </label>
+    </div>
+
+    <!-- Hero Header -->
+    <header class="header">
+        <div class="header-inner">
+            <div class="logo">
+                <span class="logo-globe">🌍</span>
+                <span class="logo-text">travelTales - News</span>
+            </div>
+            <p class="header-sub">Explore countries · Stay informed globally</p>
+        </div>
+        <div class="header-line"></div>
+    </header>
+
+    <main class="container">
+
+        <!-- Country Search Section -->
+        <section class="section country-section">
+            <div class="section-label">EXPLORE</div>
+            <h2 class="section-title">Country <em>Knowledge</em></h2>
+            <p class="section-desc">Type any country name to get detailed information instantly.</p>
+
+            <div class="search-box">
+                <div class="input-wrap">
+                    <span class="input-icon">🔍</span>
+                    <textarea
+                        id="country-input"
+                        placeholder="e.g. Japan, Brazil, Germany…"
+                        rows="1"
+                        autocomplete="off"
+                        spellcheck="false"
+                    ></textarea>
+                </div>
+                <button id="get-info-btn" class="btn-primary">
+                    <span>Get Info</span>
+                    <span class="btn-arrow">→</span>
+                </button>
+            </div>
+
+            <div id="country-info" class="country-result hidden"></div>
+        </section>
+
+        <!-- Divider -->
+        <div class="section-divider">
+            <span></span><span class="divider-dot">◆</span><span></span>
+        </div>
+
+        <!-- News Section -->
+        <section class="section news-section">
+            <div class="section-label">LIVE FEED</div>
+            <h2 class="section-title">World <em>Latest News</em></h2>
+            <p class="section-desc">Breaking stories from around the globe, updated in real time.</p>
+
+            <div id="news-container" class="news-grid">
+                <div class="news-loading">
+                    <span class="loader"></span>
+                    <span>Loading news…</span>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <p>GlobeIQ &copy; 2026 &mdash; Powered by open data</p>
+    </footer>
+
+    <script src="/js/location.js"></script>
+    <script src="/js/theme.js"></script>
+
+    <script>
+        // ── Auto-resize textarea ──────────────────────────────────
+        const ta = document.getElementById('country-input');
+        ta.addEventListener('input', () => {
+            ta.style.height = 'auto';
+            ta.style.height = ta.scrollHeight + 'px';
+        });
+        ta.addEventListener('keydown', e => {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                document.getElementById('get-info-btn').click();
+            }
+        });
+    </script>
+
+</body>
+</html>

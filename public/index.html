@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main</title>
+    <link rel="stylesheet" href="./css/index.css">
+</head>
+
+<body>
+
+    <div class="wrapper">
+
+        <!-- Top bar: logo + toggle -->
+        <div class="top-bar">
+            <div class="logo">travel<span>Tales</span></div>
+
+            <!-- Toggle: id, class, and for kept intact -->
+            <input type="checkbox" id="toggle" class="white-mode">
+            <label class="toggle-label" for="toggle">
+                <span class="toggle-track"></span>
+                <span class="toggle-text">Light mode</span>
+            </label>
+        </div>
+
+        <!-- Main card -->
+        <div class="card">
+
+            <div class="tag">New · Live now</div>
+
+            <h1>Discover <span class="highlight">new stories</span> around you 🌍</h1>
+
+            <p>Welcome to our platform, where you can explore fascinating stories about the world around you.
+                Whether you're a traveler, a local, or just curious, our app connects you with unique narratives 
+                that you won't find in guidebooks.</p>
+
+            <p>Travel anywhere and instantly learn:</p>
+
+            <div class="features-box">
+                <div class="feature-item"><span class="check">✔</span> Historical facts</div>
+                <div class="feature-item"><span class="check">✔</span> Famous events</div>
+                <div class="feature-item"><span class="check">✔</span> Local legends</div>
+                <div class="feature-item"><span class="check">✔</span> Recent news</div>
+            </div>
+
+            <hr class="divider">
+
+            <div class="actions">
+                <button class="btn-primary" onclick="window.location.href='register.html'">Get Started →</button>
+                <button class="btn-secondary" onclick="window.location.href='login.html'">Login</button>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="/js/theme.js"></script>
+
+</body>
+
+</html>
