@@ -27,14 +27,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     // Random fact
     async function loadRandomFact(){
 
-        const randomFactsResponse = await fetch(
-        "https://api.api-ninjas.com/v1/facts",
-            {
-                headers: {
-                    "X-Api-Key": process.env.NINJA_API_KEY
-                }
-            }
-        );
+        const randomFactsResponse = await fetch("/api/random-fact");
 
         const randomFactsData = await randomFactsResponse.json();
 
@@ -169,9 +162,8 @@ document.addEventListener("DOMContentLoaded", async () => {
                 
                 // Places to visit section update
                 const placesResponse = await fetch(
-                    `https://api.geoapify.com/v2/places?categories=tourism.sights&filter=circle:${longitude},${latitude},20000&limit=4&apiKey=${process.env.GEO_API_KEY}`
+                    `/api/places?latitude=${latitude}&longitude=${longitude}`
                 );
-
                 const placesData = await placesResponse.json();
 
                 const placesContainer =

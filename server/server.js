@@ -15,6 +15,8 @@ const authMiddleware = require("./middleware/authMiddleware");
 const userRoutes = require("./routes/userRoutes");
 const locationRoutes = require("./routes/locationRoutes");  
 const newsRoutes = require("./routes/newsRoutes")
+const randomFactsRoutes = require("./routes/randomFactsRoutes");
+const placeRoutes = require("./routes/placeRoutes")
 
 app.use(express.json());
 app.use("/api/location", locationRoutes);
@@ -22,6 +24,10 @@ app.use("/api/location", locationRoutes);
 app.use("/api/users", userRoutes);
 
 app.use("/api/news", newsRoutes);
+
+app.use("/api/random-fact", randomFactsRoutes);
+
+app.use("/api/places", placeRoutes);
 
 app.use(express.static(path.join(__dirname, "../public")));
 
