@@ -1,9 +1,7 @@
 const express = require("express");
-
 const router = express.Router();
 
 router.get("/", async (req, res) => {
-    
     try {
         const response = await fetch(
             "https://api.api-ninjas.com/v1/facts",
@@ -16,12 +14,10 @@ router.get("/", async (req, res) => {
 
         const data = await response.json();
         res.json(data);
-    } 
-    catch(error) {
-        console.error(error)
 
-        res.status(500).json({ 
-            error: err.message 
+    } catch (error) {
+        res.status(500).json({
+            error: error.message
         });
     }
 });

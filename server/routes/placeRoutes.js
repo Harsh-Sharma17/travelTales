@@ -3,6 +3,7 @@ const router = express.Router();
 
 router.get("/", async (req, res) => {
     try {
+
         const { latitude, longitude } = req.query;
 
         const response = await fetch(
@@ -14,10 +15,9 @@ router.get("/", async (req, res) => {
         res.json(data);
 
     } catch (error) {
-        console.error(error);
 
         res.status(500).json({
-            message: "Failed to fetch places"
+            error: error.message
         });
     }
 });
