@@ -12,9 +12,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const newsContainer = document.getElementById("news-container");
     const getInfoBtn = document.getElementById("get-info-btn");
 
-    // ==========================
     // Load News Function
-    // ==========================
     async function loadNews(countryName) {
 
         try {
@@ -99,14 +97,10 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
     }
 
-    // ==========================
     // Default News on Page Load
-    // ==========================
     await loadNews("india");
 
-    // ==========================
     // Country Search
-    // ==========================
     getInfoBtn.addEventListener("click", async () => {
 
         const countryName =

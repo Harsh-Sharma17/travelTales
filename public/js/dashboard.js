@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         "https://api.api-ninjas.com/v1/facts",
             {
                 headers: {
-                    "X-Api-Key": "q4N6QErigZBk2a40VK037ysVPBL3au6Wk75jJoCU"
+                    "X-Api-Key": process.env.NINJA_API_KEY
                 }
             }
         );
@@ -84,8 +84,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
                     // Search Wikipedia
                     const searchResponse = await fetch(
-                        // `https://en.wikipedia.org/w/api.php?action=opensearch&search=${encodeURIComponent(place)}&limit=1&namespace=0&format=json&origin=*`
-                        `https://en.wikipedia.org/api/rest_v1/page/summary/${data.city}?redirect=true`
+                       `https://en.wikipedia.org/api/rest_v1/page/summary/${data.city}?redirect=true`
                     );
 
                     const searchData = await searchResponse.json();
@@ -96,14 +95,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                     document.getElementById("wiki-link").href = 
                         searchData.content_urls?.desktop?.page || "#";
 
-                        // Fetch page summary
-                        // const summaryResponse = await fetch(
-                        //     `https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(place)}`
-                        // );
-
                         if (searchResponse.ok) {
-
-                            // const summaryData = await summaryResponse.json();
 
                             const imageElement = document.getElementById("fact-image");
 
@@ -134,7 +126,6 @@ document.addEventListener("DOMContentLoaded", async () => {
                             // If there is no data available, remove the link
                             document.getElementById("wiki-link").removeAttribute("href");
                         }
-                    // }
                     
                 } catch (error) {
 
@@ -178,7 +169,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 
                 // Places to visit section update
                 const placesResponse = await fetch(
-                    `https://api.geoapify.com/v2/places?categories=tourism.sights&filter=circle:${longitude},${latitude},20000&limit=4&apiKey=54daa07c0aa343e392352388c503d5ec`
+                    `https://api.geoapify.com/v2/places?categories=tourism.sights&filter=circle:${longitude},${latitude},20000&limit=4&apiKey=${process.env.GEO_API_KEY}`
                 );
 
                 const placesData = await placesResponse.json();

@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         // Places to visit section update
         const placesResponse = await fetch(
-            `https://api.geoapify.com/v2/places?categories=tourism.sights&filter=circle:${longitude},${latitude},20000&limit=25&apiKey=54daa07c0aa343e392352388c503d5ec`
+            `https://api.geoapify.com/v2/places?categories=tourism.sights&filter=circle:${longitude},${latitude},20000&limit=25&apiKey=${process.env.GEO_API_KEY}`
         );
 
         const placesData = await placesResponse.json();
