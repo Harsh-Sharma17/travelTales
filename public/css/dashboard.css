@@ -355,7 +355,44 @@ h1#user-name {
 .wiki-link:hover { opacity: 0.7; text-decoration: underline; }
 
 /* ── Random facts ── */
-#random-facts-section { animation-delay: 0.25s; }
+
+#random-fact-refresh {
+  margin-left: auto;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+  flex-shrink: 0;
+}
+
+#random-fact-refresh:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+#random-fact-refresh:active {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+#random-fact-refresh i {
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.spinning {
+  animation: spin 0.5s ease;
+}
 
 /* ── Buttons ── */
 button {

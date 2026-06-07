@@ -19,7 +19,14 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         document.getElementById("user-name").textContent = ` ${user.name} 👋`;
 
-        // Random facts section update
+    }catch (error){
+        console.error("Error fetching user profile: ", error);
+        alert("Error fetching user profile.");
+    }
+
+    // Random fact
+    async function loadRandomFact(){
+
         const randomFactsResponse = await fetch(
         "https://api.api-ninjas.com/v1/facts",
             {
@@ -32,11 +39,13 @@ document.addEventListener("DOMContentLoaded", async () => {
         const randomFactsData = await randomFactsResponse.json();
 
         document.getElementById("random-facts-content").textContent = randomFactsData[0].fact || "No random facts available.";
+    } 
 
-    }catch (error){
-        console.error("Error fetching user profile: ", error);
-        alert("Error fetching user profile.");
-    }
+    loadRandomFact();
+
+    document.getElementById("random-fact-refresh").addEventListener("click", () => {
+        loadRandomFact();
+    });
 
     document.getElementById("location-tracker").addEventListener("click", async () => {
 
