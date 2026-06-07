@@ -164,6 +164,11 @@ document.addEventListener("DOMContentLoaded", async () => {
                 const placesResponse = await fetch(
                     `/api/places?latitude=${latitude}&longitude=${longitude}`
                 );
+
+                if (!placesResponse.ok) {
+                    throw new Error("Failed to fetch places");
+                }
+
                 const placesData = await placesResponse.json();
 
                 const placesContainer =

@@ -118,10 +118,6 @@ app.get("/verify-token", authMiddleware, (req, res) => {
     });
 });
 
-// app.get("/test", (req, res) => {
-//     res.send("Express is working");
-// })
-
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 })

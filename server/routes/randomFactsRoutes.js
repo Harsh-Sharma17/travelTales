@@ -1,9 +1,8 @@
 const express = require("express");
-const axios = require("axios"); 
 
 const router = express.Router();
 
-router.get("/api/random-fact", async (req, res) => {
+router.get("/", async (req, res) => {
     
     try {
         const response = await fetch(
@@ -19,9 +18,11 @@ router.get("/api/random-fact", async (req, res) => {
         res.json(data);
     } 
     catch(error) {
-        console.log(error)
+        console.error(error)
 
-        res.status(500).json({ error: err.message });
+        res.status(500).json({ 
+            error: err.message 
+        });
     }
 });
 
