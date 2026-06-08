@@ -7,7 +7,7 @@ router.get("/", async (req, res) => {
         const { latitude, longitude } = req.query;
 
         const response = await fetch(
-            `https://api.geoapify.com/v2/places?categories=tourism.sights&filter=circle:${longitude},${latitude},20000&limit=4&apiKey=${process.env.GEO_API_KEY}`
+            `https://api.geoapify.com/v2/places?categories=tourism.sights&filter=circle:${longitude},${latitude},20000&limit=10&apiKey=${process.env.GEO_API_KEY}`
         );
 
         const data = await response.json();
