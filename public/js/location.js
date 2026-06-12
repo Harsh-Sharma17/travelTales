@@ -128,6 +128,8 @@ document.addEventListener("DOMContentLoaded", async () => {
 
             const responseData = await response.json();
 
+            console.log(responseData);
+
             if (response.ok && responseData.length > 0) {
 
                 const countryData = responseData[0];

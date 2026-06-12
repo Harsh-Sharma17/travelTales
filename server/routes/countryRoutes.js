@@ -15,6 +15,8 @@ router.get("/", async (req, res) => {
             });
         }
         
+        console.log("API KEY:", process.env.REST_COUNTRIES);
+        
         const response = await axios.get(
             "https://api.restcountries.com/countries/v5?",
             {
@@ -26,6 +28,15 @@ router.get("/", async (req, res) => {
                 }
             }
         );
+
+        console.log(responseData);
+        
+        if (response.ok) {
+            countryInfo.innerHTML =
+                "<pre>" + JSON.stringify(responseData, null, 2) + "</pre>";
+        }
+
+        console.log(JSON.stringify(response.data, null, 2));
 
         res.json(response.data);
     }
