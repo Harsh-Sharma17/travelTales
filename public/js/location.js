@@ -128,14 +128,28 @@ document.addEventListener("DOMContentLoaded", async () => {
 
             const responseData = await response.json();
 
-            console.log(responseData);
+            console.log("Country API Response:", responseData);
 
-            if (response.ok && responseData.length > 0) {
+            if (
+                response.ok &&
+                responseData.data &&
+                responseData.data.objects &&
+                responseData.data.objects.length > 0
+            ) {
 
-                const countryData = responseData[0];
+                const countries = responseData.data.objects;
+
+                const countryData =
+                    countries.find(
+                        country =>
+                            country.names?.common?.toLowerCase() ===
+                            countryName.toLowerCase()
+                    ) || countries[0];
+
+                console.log("Selected Country:", countryData);
 
                 const capital =
-                    countryData.capital?.[0] || "N/A";
+                    countryData.capitals?.[0]?.name || "N/A";
 
                 const population =
                     countryData.population
@@ -148,38 +162,26 @@ document.addEventListener("DOMContentLoaded", async () => {
                 const subregion =
                     countryData.subregion || "N/A";
 
-                const flag =
-                    countryData.flags?.png || "";
-
-                const mapLink =
-                    countryData.maps?.googleMaps || "#";
-
-                const carSide =
-                    countryData.car?.side || "N/A";
-
                 const countryCode =
-                    countryData.cca2 || "N/A";
-
-                const unMember =
-                    countryData.unMember ? "Yes" : "No";
+                    countryData.codes?.alpha2 || "N/A";
 
                 const timezones =
                     countryData.timezones?.join(", ") || "N/A";
 
                 const currencies =
-                    countryData.currencies
-                        ? Object.values(countryData.currencies)
+                    countryData.currencies?.length
+                        ? countryData.currencies
                             .map(currency => currency.name)
                             .join(", ")
                         : "N/A";
 
-                const languages =
-                    countryData.languages
-                        ? Object.values(countryData.languages).join(", ")
-                        : "N/A";
+                const flag =
+                    countryData.flag?.png ||
+                    countryData.flag?.svg ||
+                    "";
 
                 countryInfo.innerHTML = `
-                    <h2>${countryData.name.common}</h2>
+                    <h2>${countryData.names?.common || "N/A"}</h2>
 
                     <p><strong>Capital:</strong> ${capital}</p>
 
@@ -189,28 +191,17 @@ document.addEventListener("DOMContentLoaded", async () => {
 
                     <p><strong>Subregion:</strong> ${subregion}</p>
 
-                    <p><strong>UN Member:</strong> ${unMember}</p>
-
-                    <p><strong>Car Side:</strong> ${carSide}</p>
-
                     <p><strong>Country Code:</strong> ${countryCode}</p>
 
                     <p><strong>Timezones:</strong> ${timezones}</p>
 
                     <p><strong>Currencies:</strong> ${currencies}</p>
 
-                    <p><strong>Languages:</strong> ${languages}</p>
-
-                    ${flag
-                        ? `<img src="${flag}" alt="Flag of ${countryName}" width="150">`
-                        : ""
+                    ${
+                        flag
+                            ? `<img src="${flag}" alt="Flag" width="150">`
+                            : ""
                     }
-
-                    <br><br>
-
-                    <a href="${mapLink}" target="_blank">
-                        View on Google Maps
-                    </a>
                 `;
 
             } else {
@@ -219,7 +210,6 @@ document.addEventListener("DOMContentLoaded", async () => {
                     "Country not found. Please check the spelling and try again.";
             }
 
-            // Load news for searched country
             await loadNews(countryName);
 
         } catch (error) {
