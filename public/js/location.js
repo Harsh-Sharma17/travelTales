@@ -123,7 +123,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             `;
 
             const response = await fetch(
-                `https://restcountries.com/v3.1/name/${encodeURIComponent(countryName)}?fullText=true`
+                `/api/country?country=${encodeURIComponent(countryName)}`
             );
 
             const responseData = await response.json();
