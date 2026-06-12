@@ -29,13 +29,6 @@ router.get("/", async (req, res) => {
             }
         );
 
-        console.log(responseData);
-        
-        if (response.ok) {
-            countryInfo.innerHTML =
-                "<pre>" + JSON.stringify(responseData, null, 2) + "</pre>";
-        }
-
         console.log(JSON.stringify(response.data, null, 2));
 
         res.json(response.data);
