@@ -22,7 +22,7 @@ router.get("/", async (req, res) => {
                     q: countryName
                 },
                 headers: {
-                    Authorization: `Bearer &{process.env.REST_COUNTRIES}`
+                    Authorization: `Bearer ${process.env.REST_COUNTRIES}`
                 }
             }
         );
@@ -30,7 +30,13 @@ router.get("/", async (req, res) => {
         res.json(response.data);
     }
     catch(err){
-        res.status(500).json({ error: err.message });
+        console.error(
+            err.response?.data || err.message
+        );
+
+        res.status(500).json({
+            error: err.response?.data || err.message
+        });
     }
 });
 
