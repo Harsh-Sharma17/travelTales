@@ -141,12 +141,15 @@ document.addEventListener("DOMContentLoaded", async () => {
 
                 const countryData =
                     countries.find(
-                        country =>
-                            country.names?.common?.toLowerCase() ===
+                        c =>
+                            c.names?.common?.toLowerCase() ===
                             countryName.toLowerCase()
                     ) || countries[0];
 
                 console.log("Selected Country:", countryData);
+
+                const countryNameDisplay =
+                    countryData.names?.common || "N/A";
 
                 const capital =
                     countryData.capitals?.[0]?.name || "N/A";
@@ -165,23 +168,65 @@ document.addEventListener("DOMContentLoaded", async () => {
                 const countryCode =
                     countryData.codes?.alpha2 || "N/A";
 
-                const timezones =
+                const timezone =
                     countryData.timezones?.join(", ") || "N/A";
+
+                const areaKm =
+                    countryData.area?.kilometers?.toLocaleString() || "N/A";
+
+                const areaMiles =
+                    countryData.area?.miles?.toLocaleString() || "N/A";
+
+                const borders =
+                    countryData.borders?.join(", ") || "None";
+
+                const callingCodes =
+                    countryData.calling_codes?.join(", ") || "N/A";
+
+                const drivingSide =
+                    countryData.cars?.driving_side || "N/A";
 
                 const currencies =
                     countryData.currencies?.length
                         ? countryData.currencies
-                            .map(currency => currency.name)
+                            .map(c => c.name)
                             .join(", ")
                         : "N/A";
 
-                const flag =
-                    countryData.flag?.png ||
-                    countryData.flag?.svg ||
-                    "";
+                const languages =
+                    countryData.languages?.length
+                        ? countryData.languages
+                            .map(l => l.iso639_1 || l.bcp47)
+                            .join(", ")
+                        : "N/A";
+
+                const googleMaps =
+                    countryData.links?.google_maps || "#";
+
+                const wikipedia =
+                    countryData.links?.wikipedia || "#";
+
+                const memberships = [];
+
+                if (countryData.memberships) {
+
+                    for (const [key, value] of Object.entries(countryData.memberships)) {
+
+                        if (value === true) {
+                            memberships.push(
+                                key.replaceAll("_", " ")
+                            );
+                        }
+                    }
+                }
+
+                const membershipText =
+                    memberships.length > 0
+                        ? memberships.join(", ")
+                        : "N/A";
 
                 countryInfo.innerHTML = `
-                    <h2>${countryData.names?.common || "N/A"}</h2>
+                    <h2>${countryNameDisplay}</h2>
 
                     <p><strong>Capital:</strong> ${capital}</p>
 
@@ -193,15 +238,33 @@ document.addEventListener("DOMContentLoaded", async () => {
 
                     <p><strong>Country Code:</strong> ${countryCode}</p>
 
-                    <p><strong>Timezones:</strong> ${timezones}</p>
+                    <p><strong>Calling Codes:</strong> ${callingCodes}</p>
+
+                    <p><strong>Timezones:</strong> ${timezone}</p>
+
+                    <p><strong>Area:</strong> ${areaKm} km² (${areaMiles} mi²)</p>
+
+                    <p><strong>Borders:</strong> ${borders}</p>
+
+                    <p><strong>Driving Side:</strong> ${drivingSide}</p>
 
                     <p><strong>Currencies:</strong> ${currencies}</p>
 
-                    ${
-                        flag
-                            ? `<img src="${flag}" alt="Flag" width="150">`
-                            : ""
-                    }
+                    <p><strong>Languages:</strong> ${languages}</p>
+
+                    <p><strong>Memberships:</strong> ${membershipText}</p>
+
+                    <br>
+
+                    <a href="${googleMaps}" target="_blank">
+                        📍 View on Google Maps
+                    </a>
+
+                    <br><br>
+
+                    <a href="${wikipedia}" target="_blank">
+                        📖 Read on Wikipedia
+                    </a>
                 `;
 
             } else {
