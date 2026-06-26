@@ -1,6 +1,6 @@
-const form = document.querySelector("form");
+const form = document.querySelector("postForm");
 
-form.addEventListener("submit",async(e)=>{
+form.addEventListener("submit", async(e)=>{
 
     e.preventDefault();
 
@@ -12,7 +12,7 @@ form.addEventListener("submit",async(e)=>{
         return;
     }
 
-    const image = document.getElementById("image").files[0];
+    const imageFile = document.getElementById("image").files[0];
     const title = document.getElementById("title").value.trim();
     const location = document.getElementById("location").value.trim();
     const description = document.getElementById("description").value.trim();
@@ -22,23 +22,17 @@ form.addEventListener("submit",async(e)=>{
         return;
     }
 
-    let image = "";
+    const image = await new Promise((resolve, reject) => {
 
-    if (imageFile) {
+        const reader = new FileReader();
+            
+        reader.onload = () => resolve(reader.result);
 
-        image = await new Promise((resolve, reject) => {
+        reader.onerror = () => reject("Image upload failed.");
 
-            const reader = new FileReader();
+        reader.readAsDataURL(imageFile);
 
-            reader.onload = () => resolve(reader.result);
-
-            reader.onerror = () => reject("Image upload failed.");
-
-            reader.readAsDataURL(imageFile);
-
-        });
-
-    }
+    });
 
     try {
 
