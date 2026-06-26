@@ -8,6 +8,7 @@ const mongoose = require('mongoose');
 const app = express();
 const PORT = process.env.PORT || 3000;
 const User = require("./models/User");
+const Post = require("./models/Post")
 
 const jwt = require('jsonwebtoken');
 const authMiddleware = require("./middleware/authMiddleware");
@@ -112,6 +113,57 @@ app.post("/login", async (req, res) => {
             message: "Internal server error"
         })
     }
+});
+
+// create post
+app.post("/createpost", authMiddleware, async (req, res) => {
+
+    try {
+
+        console.log("Here is createpost data : ", req.body);
+
+        const {image, title, location, description} = req.body;
+
+        const post = new Post({
+            userId: req.userId,
+            image,
+            title,
+            location,
+            description
+        })
+
+        await post.save();
+
+        res.status(201).json({
+            message: "Post created successfully"
+        })
+    }catch(error){
+        console.error("Error while creating post : ", error);
+        res.status(500).json({
+            message: "Internal server error"
+        })
+    }
+});
+
+// get posts
+app.get("/posts", authMiddleware, async (req, res) => {
+
+    try {
+
+        const posts = await Post.find({
+            userId: req.userId
+        }).sort({ createdAt: -1 });
+
+        res.json(posts);
+
+    } catch (error) {
+
+        res.status(500).json({
+            message: "Internal Server Error"
+        });
+
+    }
+
 });
 
 app.get("/verify-token", authMiddleware, (req, res) => {

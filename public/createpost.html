@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create post</title>
+</head>
+<body>
+    <h1>Create your post</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Post</title>
+</head>
+<body>
+
+    <h1>Create Your Travel Post</h1>
+
+    <form action="/create-post" method="post" enctype="multipart/form-data">
+    <!-- <form> -->
+        <!-- Upload Image -->
+        <label for="image">Choose a Cover Image:</label>
+        <br>
+        <input
+            type="file"
+            id="image"
+            name="image"
+            accept="image/*"
+            required
+        >
+        <br><br>
+
+        <!-- Post Title -->
+        <label for="title">Post Title:</label>
+        <br>
+        <input
+            type="text"
+            id="title"
+            name="title"
+            placeholder="Enter your post title"
+            required
+        >
+        <br><br>
+
+        <!-- Location (Optional) -->
+        <label for="location">Location:</label>
+        <br>
+        <input
+            type="text"
+            id="location"
+            name="location"
+            placeholder="e.g. Manali, India"
+        >
+        <br><br>
+
+        <!-- Description -->
+        <label for="description">Description:</label>
+        <br>
+        <textarea
+            id="description"
+            name="description"
+            rows="10"
+            cols="60"
+            placeholder="Write about your travel experience..."
+            required
+        ></textarea>
+        <br><br>
+
+        <!-- Submit Button -->
+        <button type="submit">Publish Post</button>
+
+        <!-- Reset Button -->
+        <button type="reset">Clear</button>
+
+    </form>
+
+</body>
+</html>
+    <form action="post.html" method="post">
+        <input type="text" name="Enter head" id="">
+    </form>
+    <script src="./js/createpost.js"></script>
+</body>
+</html>
