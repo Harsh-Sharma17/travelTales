@@ -75,7 +75,7 @@ document.addEventListener("DOMContentLoaded", async (e) => {
                             </span>
                         </div>
                         <div class="post-actions">
-                            <button class="delete-btn" data-id="${post._id}">
+                            <button class="btn btn--delete delete-btn" data-id="${post._id}">
                                 <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/></svg>
                                 Delete
                             </button>

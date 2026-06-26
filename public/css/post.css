@@ -329,6 +329,7 @@ h1 {
     transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
     animation: fadeUp 0.5s cubic-bezier(0.22,1,0.36,1) both;
 }
+
 .post-item:hover {
     border-color: var(--nav-active-border);
     transform: translateY(-2px);
@@ -338,14 +339,17 @@ h1 {
 /* Image */
 .post-image-wrap {
     flex-shrink: 0;
-    width: 160px;
+    width: 125px;
+    height: 125px;
     background: var(--bg-card2);
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
     position: relative;
+    border-radius: 12px;
 }
+
 .post-image-wrap::after {
     content: '🏔';
     font-size: 2rem;
