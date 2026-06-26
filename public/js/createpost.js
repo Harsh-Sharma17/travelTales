@@ -1,8 +1,13 @@
-const form = document.querySelector("postForm");
+const form = document.getElementById("postForm");
 
 form.addEventListener("submit", async(e)=>{
 
     e.preventDefault();
+
+    if (!form) {
+        console.error("Form not found!");
+        return;
+    }
 
     const token = localStorage.getItem("token");
 
@@ -22,17 +27,18 @@ form.addEventListener("submit", async(e)=>{
         return;
     }
 
-    const image = await new Promise((resolve, reject) => {
+    let image = "";
 
-        const reader = new FileReader();
-            
-        reader.onload = () => resolve(reader.result);
+    if (imageFile) {
+        image = await new Promise((resolve, reject) => {
+            const reader = new FileReader();
 
-        reader.onerror = () => reject("Image upload failed.");
+            reader.onload = () => resolve(reader.result);
+            reader.onerror = () => reject("Image upload failed.");
 
-        reader.readAsDataURL(imageFile);
-
-    });
+            reader.readAsDataURL(imageFile);
+        });
+    }
 
     try {
 
