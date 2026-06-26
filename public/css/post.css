@@ -339,6 +339,7 @@ h1 {
 /* Image */
 .post-image-wrap {
     flex-shrink: 0;
+    height: 160px;
     width: 160px;
     background: var(--bg-card2);
     display: flex;
