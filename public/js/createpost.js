@@ -22,6 +22,11 @@ form.addEventListener("submit", async(e)=>{
     const location = document.getElementById("location").value.trim();
     const description = document.getElementById("description").value.trim();
 
+    if (imageFile && imageFile.size > 5 * 1024 * 1024) {
+        alert("Image must be smaller than 5 MB");
+        return;
+    }
+
     if (!title || !description) {
         alert("Title and description are required.");
         return;
@@ -56,7 +61,15 @@ form.addEventListener("submit", async(e)=>{
             })
         });
 
-        const data = await response.json();
+        let data;
+
+        try {
+            data = await response.json();
+        } catch {
+            const text = await response.text();
+            console.log(text);
+            throw new Error("Server returned non-JSON response");
+        }
 
         if(response.ok){
             

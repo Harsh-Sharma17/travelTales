@@ -20,7 +20,17 @@ const randomFactsRoutes = require("./routes/randomFactsRoutes");
 const placeRoutes = require("./routes/placeRoutes")
 const countryRoutes = require("./routes/countryRoutes") 
 
-app.use(express.json());
+// app.use(express.json());
+
+app.use(express.json({
+    limit: "10mb"
+}));
+
+app.use(express.urlencoded({
+    extended: true,
+    limit: "10mb"
+}));
+
 app.use("/api/location", locationRoutes);
 
 app.use("/api/users", userRoutes);
