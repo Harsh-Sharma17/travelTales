@@ -12,6 +12,21 @@ document.addEventListener("DOMContentLoaded", async (e) => {
 
     const postContainer = document.getElementById("post-data");
 
+    try{
+
+        const response = await fetch("/api/users/profile", {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
+
+        const user = await response.json();
+
+        document.getElementById("user-name").textContent = `Hey, ${user.name}!`;
+    } catch (error) {
+        console.error("Error fetching Data", error);
+    }
+
     try {
 
         const response = await fetch("/posts", {

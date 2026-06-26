@@ -186,42 +186,6 @@ input#toggle.white-mode { display: none; }
 input#toggle.white-mode:checked + .toggle-label .toggle-track::after {
     transform: translateX(18px);
 }
-/* 
-/* ── Create Post Button ── */
-.post-btn{
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 14px;
-    padding: 10px 22px;
-    border-radius: 12px;
-    text-decoration: none;
-    font-size: 0.9rem;
-    font-weight: 600;
-    letter-spacing: 0.3px;
-
-    color: #fff;
-    background: linear-gradient(135deg, #4f8ef7 0%, #7c5cfc 100%);
-    box-shadow: 0 8px 20px rgba(79,142,247,0.25);
-
-    transition: all 0.3s ease;
-}
-
-.post-btn:hover{
-    transform: translateY(-3px);
-    box-shadow: 0 12px 28px rgba(79,142,247,0.35);
-    opacity: 0.95;
-}
-
-.post-btn:active{
-    transform: translateY(0);
-}
-
-.post-btn::before{
-    content: "✈";
-    margin-right: 8px;
-    font-size: 0.9rem;
-} */
 
 /* ── Main ── */
 .main {
