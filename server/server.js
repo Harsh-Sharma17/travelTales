@@ -18,7 +18,7 @@ const locationRoutes = require("./routes/locationRoutes");
 const newsRoutes = require("./routes/newsRoutes")
 const randomFactsRoutes = require("./routes/randomFactsRoutes");
 const placeRoutes = require("./routes/placeRoutes")
-const countryRoutes = require("./routes/countryRoutes")
+const countryRoutes = require("./routes/countryRoutes") 
 
 app.use(express.json());
 app.use("/api/location", locationRoutes);
@@ -124,6 +124,12 @@ app.post("/createpost", authMiddleware, async (req, res) => {
 
         const {image, title, location, description} = req.body;
 
+        if (!title || !description) {
+            return res.status(400).json({
+                message: "Title and description are required."
+            });
+        }
+
         const post = new Post({
             userId: req.userId,
             image,
@@ -135,14 +141,21 @@ app.post("/createpost", authMiddleware, async (req, res) => {
         await post.save();
 
         res.status(201).json({
+            success: true,
             message: "Post created successfully"
-        })
+        });
+
     }catch(error){
-        console.error("Error while creating post : ", error);
+
+        console.error("Create Post Error:", error);
+
         res.status(500).json({
+            success: false,
             message: "Internal server error"
-        })
+        });
+
     }
+
 });
 
 // get posts
@@ -158,6 +171,8 @@ app.get("/posts", authMiddleware, async (req, res) => {
 
     } catch (error) {
 
+        console.error(error);
+        
         res.status(500).json({
             message: "Internal Server Error"
         });
