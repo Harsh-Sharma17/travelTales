@@ -191,6 +191,40 @@ app.get("/posts", authMiddleware, async (req, res) => {
 
 });
 
+// Delete post
+app.delete("/posts/:id", authMiddleware, async (req, res) => {
+
+    try {
+
+        const post = await Post.findOneAndDelete({
+            _id: req.params.id,
+            userId: req.userId
+        });
+
+        if (!post) {
+            return res.status(404).json({
+                message: "Post not found"
+            });
+        }
+
+        res.json({
+            success: true,
+            message: "Post deleted successfully"
+        });
+
+    } catch (error) {
+
+        console.error("Delete Error:", error);
+
+        res.status(500).json({
+            success: false,
+            message: "Internal server error"
+        });
+
+    }
+
+});
+
 app.get("/verify-token", authMiddleware, (req, res) => {
     res.json({
         valid: true,
