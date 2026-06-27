@@ -341,6 +341,7 @@ h1 {
     flex-shrink: 0;
     height: 160px;
     width: 160px;
+    /* object-fit: contain; */
     background: var(--bg-card2);
     display: flex;
     align-items: center;
@@ -361,10 +362,12 @@ h1 {
     height: 100%;
     padding: 10px;
     border-radius: 20px;
-    object-fit: cover;
+    object-fit: contain;
     display: block;
     position: relative;
     z-index: 1;
+    border-color: #4f8ef7;
+    border: 10px;
 }
 
 /* Body */
